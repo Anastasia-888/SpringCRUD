@@ -26,7 +26,7 @@ import static java.util.Objects.requireNonNull;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "web")
+@ComponentScan("web")
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 public class WebConfig implements WebMvcConfigurer {
