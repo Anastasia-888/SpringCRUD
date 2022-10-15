@@ -27,32 +27,26 @@ public class UserController {
         return "new";
     }
 
-    @PostMapping()
+    @PostMapping("/create")
     public String saveUser(@ModelAttribute("user") User user){
         userService.add(user);
         return "redirect:/users";
     }
 
-    @GetMapping("/{id}")
-    public String getUser(@PathVariable(value = "id", required = false) int id, Model model){
-        model.addAttribute(userService.getUserById(id));
-        return "user";
-    }
-
     @GetMapping("/{id}/edit")
-    public String editUser(@PathVariable(value = "id", required = false) int id, Model model){
+    public String editUser(@PathVariable(value = "id") int id, Model model){
         model.addAttribute("user", userService.getUserById(id));
         return "edit";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable(value = "id", required = false) int id){
+    public String update(@ModelAttribute("user") User user, @PathVariable(value = "id") int id){
         userService.update(id, user);
         return "redirect:/users";
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable(value = "id", required = false) int id){
+    public String delete(@PathVariable(value = "id") int id){
         userService.delete(userService.getUserById(id));
         return "redirect:/users";
     }
